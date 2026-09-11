@@ -76,6 +76,8 @@ public class Taller {
         this.listOrdenesServicio = listOrdenesServicio;
     }
 
+    public LinkedList<OrdenServicio> getOrdenesServicio() {return listOrdenesServicio;}
+
     //Metodo para agregar una orden de servicio a la lista de ordenes de servicio del taller
     public boolean agregarOrdenServicio(OrdenServicio ordenServicio) {
         boolean centinela = false;
@@ -95,6 +97,37 @@ public class Taller {
             }
         }
         return verificado;
+    }
+    //Metodo para eliminar ordenes de servicio
+    public boolean eliminarOrdenServicio(String idServicio) {
+        boolean eliminado = false;
+        for (OrdenServicio ordenServicio : listOrdenesServicio) {
+            if (ordenServicio.getIdServicio().equals(idServicio)) {
+                listOrdenesServicio.remove(ordenServicio);
+                eliminado = true;
+                break;
+            }
+        }
+        return eliminado;
+    }
+
+    //Metodo Actualizar Orden servicio
+    public boolean actualizarOrdenServicio(String idOrdenServicio, OrdenServicio ordenServicioActualizado) {
+        boolean actualizado = false;
+        for (OrdenServicio ordenServicio : listOrdenesServicio) {
+            if (ordenServicio.getIdServicio().equals(idOrdenServicio)) {
+                ordenServicio.setFechaIngreso(ordenServicioActualizado.getFechaIngreso());
+                ordenServicio.setHoraIngreso(ordenServicioActualizado.getHoraIngreso());
+                ordenServicio.setMotivoServicio(ordenServicioActualizado.getMotivoServicio());
+                ordenServicio.setDiagnostico(ordenServicioActualizado.getDiagnostico());
+                ordenServicio.setTrabajoRealizado(ordenServicioActualizado.getTrabajoRealizado());
+                ordenServicio.setTrabajoRealizado(ordenServicioActualizado.getTrabajoRealizado());
+                ordenServicio.setCostoTotal(ordenServicioActualizado.getCostoTotal());
+                actualizado = true;
+                break;
+            }
+        }
+        return actualizado;
     }
 
     //Metodo para agregar cliente a la lista de clientes
