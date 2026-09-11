@@ -10,18 +10,22 @@ public class OrdenServicio {
     private String diagnostico;
     private String trabajoRealizado;
     private double costoTotal;
+    private String idServicio;
     private Mecanico theMecanicoBicicleta;
+    private Bicicleta theBicicletaOrdenServicio;
 
     //Constructor
 
-    public OrdenServicio(Date fechaIngreso, Time horaIngreso, String motivoServicio, String diagnostico, String trabajoRealizado, double costoTotal) {
+    public OrdenServicio(Date fechaIngreso, Time horaIngreso, String motivoServicio, String diagnostico, String trabajoRealizado, double costoTotal, String idServicio, Mecanico theMecanicoBicicleta, Bicicleta theBicicletaOrdenServicio) {
         this.fechaIngreso = fechaIngreso;
         this.horaIngreso = horaIngreso;
         this.motivoServicio = motivoServicio;
         this.diagnostico = diagnostico;
         this.trabajoRealizado = trabajoRealizado;
         this.costoTotal = costoTotal;
-        this.theMecanicoBicicleta = null;
+        this.idServicio = idServicio;
+        this.theMecanicoBicicleta = theMecanicoBicicleta;
+        this.theBicicletaOrdenServicio = theBicicletaOrdenServicio;
     }
 
     //Getters y Setters
@@ -74,13 +78,19 @@ public class OrdenServicio {
         this.costoTotal = costoTotal;
     }
 
+    public String getIdServicio() {return idServicio;}
+
+    public void setIdServicio(String idServicio) {this.idServicio = idServicio;}
+
+    public Bicicleta getTheBicicletaOrdenServicio() {return theBicicletaOrdenServicio;}
+
+    public void setTheBicicletaOrdenServicio(Bicicleta theBicicletaOrdenServicio) {this.theBicicletaOrdenServicio = theBicicletaOrdenServicio;}
+
     public Mecanico getTheMecanicoBicicleta() {
         return theMecanicoBicicleta;
     }
 
-    public void setTheMecanicoBicicleta(Mecanico theMecanicoBicicleta) {
-        this.theMecanicoBicicleta = theMecanicoBicicleta;
-    }
+    public void setTheMecanicoBicicleta(Mecanico theMecanicoBicicleta) {this.theMecanicoBicicleta = theMecanicoBicicleta;}
 
     @Override
     public String toString() {

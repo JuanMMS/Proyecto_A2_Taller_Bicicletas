@@ -76,10 +76,54 @@ public class Taller {
         this.listOrdenesServicio = listOrdenesServicio;
     }
 
+    //Metodo para agregar una orden de servicio a la lista de ordenes de servicio del taller
+    public boolean agregarOrdenServicio(OrdenServicio ordenServicio) {
+        boolean centinela = false;
+        if (!verificarCliente(ordenServicio.getIdServicio())) {
+            listOrdenesServicio.add(ordenServicio);
+            centinela = true;
+        }
+        return centinela;
+    }
+
+    //Metodo para verificar la orden de servicio es existente
+    public boolean verificarOrdenServicio(String idServicio) {
+        boolean verificado = false;
+        for (OrdenServicio ordenServicio : listOrdenesServicio) {
+            if (ordenServicio.getIdServicio().equals(idServicio)) {
+                verificado = true;
+            }
+        }
+        return verificado;
+    }
+
+    //Metodo para agregar cliente a la lista de clientes
+    public boolean agregarCliente(Cliente cliente) {
+        boolean centinela = false;
+        if (!verificarCliente(cliente.getNombre())) {
+            listClientes.add(cliente);
+            centinela = true;
+        }
+        return centinela;
+    }
+
+    //Metodo para verificar que el cliente no esté existente
+    public boolean verificarCliente(String numIdentificacion) {
+        boolean verificado = false;
+        for (Cliente cliente : listClientes) {
+            if (cliente.getNumIdentificacion().equals(numIdentificacion)) {
+                verificado = true;
+            }
+        }
+        return verificado;
+    }
+
+
     @Override
     public String toString() {
         return "Nombre: " + nombre + "/n"
                 + ", Id: " + id + "/n"
                 + ", Direccion: " + direccion;
     }
+
 }
