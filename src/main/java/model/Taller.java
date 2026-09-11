@@ -76,10 +76,87 @@ public class Taller {
         this.listOrdenesServicio = listOrdenesServicio;
     }
 
+    public LinkedList<OrdenServicio> getOrdenesServicio() {return listOrdenesServicio;}
+
+    //Metodo para agregar una orden de servicio a la lista de ordenes de servicio del taller
+    public boolean agregarOrdenServicio(OrdenServicio ordenServicio) {
+        boolean centinela = false;
+        if (!verificarCliente(ordenServicio.getIdServicio())) {
+            listOrdenesServicio.add(ordenServicio);
+            centinela = true;
+        }
+        return centinela;
+    }
+
+    //Metodo para verificar la orden de servicio es existente
+    public boolean verificarOrdenServicio(String idServicio) {
+        boolean verificado = false;
+        for (OrdenServicio ordenServicio : listOrdenesServicio) {
+            if (ordenServicio.getIdServicio().equals(idServicio)) {
+                verificado = true;
+            }
+        }
+        return verificado;
+    }
+    //Metodo para eliminar ordenes de servicio
+    public boolean eliminarOrdenServicio(String idServicio) {
+        boolean eliminado = false;
+        for (OrdenServicio ordenServicio : listOrdenesServicio) {
+            if (ordenServicio.getIdServicio().equals(idServicio)) {
+                listOrdenesServicio.remove(ordenServicio);
+                eliminado = true;
+                break;
+            }
+        }
+        return eliminado;
+    }
+
+    //Metodo Actualizar Orden servicio
+    public boolean actualizarOrdenServicio(String idOrdenServicio, OrdenServicio ordenServicioActualizado) {
+        boolean actualizado = false;
+        for (OrdenServicio ordenServicio : listOrdenesServicio) {
+            if (ordenServicio.getIdServicio().equals(idOrdenServicio)) {
+                ordenServicio.setFechaIngreso(ordenServicioActualizado.getFechaIngreso());
+                ordenServicio.setHoraIngreso(ordenServicioActualizado.getHoraIngreso());
+                ordenServicio.setMotivoServicio(ordenServicioActualizado.getMotivoServicio());
+                ordenServicio.setDiagnostico(ordenServicioActualizado.getDiagnostico());
+                ordenServicio.setTrabajoRealizado(ordenServicioActualizado.getTrabajoRealizado());
+                ordenServicio.setTrabajoRealizado(ordenServicioActualizado.getTrabajoRealizado());
+                ordenServicio.setCostoTotal(ordenServicioActualizado.getCostoTotal());
+                actualizado = true;
+                break;
+            }
+        }
+        return actualizado;
+    }
+
+    //Metodo para agregar cliente a la lista de clientes
+    public boolean agregarCliente(Cliente cliente) {
+        boolean centinela = false;
+        if (!verificarCliente(cliente.getNombre())) {
+            listClientes.add(cliente);
+            centinela = true;
+        }
+        return centinela;
+    }
+
+    //Metodo para verificar que el cliente no esté existente
+    public boolean verificarCliente(String numIdentificacion) {
+        boolean verificado = false;
+        for (Cliente cliente : listClientes) {
+            if (cliente.getNumIdentificacion().equals(numIdentificacion)) {
+                verificado = true;
+            }
+        }
+        return verificado;
+    }
+
+
     @Override
     public String toString() {
         return "Nombre: " + nombre + "/n"
                 + ", Id: " + id + "/n"
                 + ", Direccion: " + direccion;
     }
+
 }
