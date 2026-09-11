@@ -1,14 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="tallerBicicletas.CrudOrdenServicio"
-            prefHeight="400.0" prefWidth="600.0">
+<VBox prefWidth="650.0" spacing="15.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.taller.controller.OrdenServicioController">
+    <padding>
+        <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
+    </padding>
+    <children>
+        <VBox spacing="5.0">
+            <children>
+                <Label text="Gestión de Orden de Servicio" textFill="#1d3557">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Label>
+                <Label text="Formulario para el registro y actualización de mantenimiento de bicicletas" textFill="#457b9d">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Separator prefWidth="200.0" />
+            </children>
+        </VBox>
 
-</AnchorPane>
+        <GridPane hgap="15.0" vgap="12.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="120.0" prefWidth="150.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="200.0" prefWidth="420.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="70.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="70.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="70.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="Fecha de Ingreso:" GridPane.rowIndex="0">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+                <DatePicker fx:id="dpFechaIngreso" prefWidth="250.0" promptText="Seleccionar fecha" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label text="Hora de Ingreso:" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtHoraIngreso" maxWidth="250.0" promptText="HH:mm (ej. 14:30)" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label text="Bicicleta Atendida:" GridPane.rowIndex="2">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="cbBicicleta" prefWidth="350.0" promptText="Seleccionar bicicleta por serial" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <Label text="Mecánico Responsable:" GridPane.rowIndex="3">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="cbMecanico" prefWidth="350.0" promptText="Seleccionar mecánico responsable" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                <Label text="Motivo del Servicio:" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                    <GridPane.margin>
+                        <Insets top="5.0" />
+                    </GridPane.margin>
+                </Label>
+                <TextArea fx:id="txtMotivoServicio" promptText="Describa el motivo de ingreso..." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                <Label text="Diagnóstico:" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                    <GridPane.margin>
+                        <Insets top="5.0" />
+                    </GridPane.margin>
+                </Label>
+                <TextArea fx:id="txtDiagnostico" promptText="Resultados de la revisión inicial..." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                <Label text="Trabajos Realizados:" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                    <GridPane.margin>
+                        <Insets top="5.0" />
+                    </GridPane.margin>
+                </Label>
+                <TextArea fx:id="txtTrabajoRealizado" promptText="Detalle de mantenimientos y repuestos cambiados..." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+                <Label text="Costo Total ($):" GridPane.rowIndex="7">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtCostoTotal" maxWidth="200.0" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            </children>
+        </GridPane>
+
+        <Separator prefWidth="200.0" />
+
+        <HBox alignment="CENTER_RIGHT" spacing="12.0">
+            <children>
+                <Button fx:id="btnLimpiar" mnemonicParsing="false" onAction="#handleLimpiar" prefHeight="32.0" prefWidth="100.0" style="-fx-background-color: #f1faee; -fx-border-color: #a8dadc; -fx-border-radius: 4;" text="Limpiar" />
+                <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#handleCancelar" prefHeight="32.0" prefWidth="100.0" style="-fx-background-color: #e63946;" text="Cancelar" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#handleGuardarOrden" prefHeight="32.0" prefWidth="130.0" style="-fx-background-color: #2a9d8f;" text="Guardar Orden" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+            </children>
+        </HBox>
+    </children>
+</VBox>

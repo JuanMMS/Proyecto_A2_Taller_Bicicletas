@@ -1,6 +1,8 @@
 package model;
 
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class OrdenServicio {
@@ -26,6 +28,9 @@ public class OrdenServicio {
         this.idServicio = idServicio;
         this.theMecanicoBicicleta = theMecanicoBicicleta;
         this.theBicicletaOrdenServicio = theBicicletaOrdenServicio;
+    }
+
+    public OrdenServicio(LocalDate fechaIngreso, LocalTime horaIngreso, String motivoServicio, String diagnostico, String trabajoRealizado, double costoTotal, Mecanico mecanico, Bicicleta bicicleta) {
     }
 
     //Getters y Setters
