@@ -200,6 +200,15 @@ public class Taller {
     }
 
 
+
+
+
+    //metodo para consultar el historial de servicios por serial de bicicleta
+    public LinkedList<OrdenServicio> verHistorialServicioSerial (String serial) {
+        return null;
+    }
+
+
     @Override
     public String toString() {
         return "Nombre: " + nombre + "/n"
