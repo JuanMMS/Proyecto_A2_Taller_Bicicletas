@@ -19,6 +19,10 @@ public class Taller {
         this.id = id;
         this.direccion = direccion;
         this.materialesDisponibles = materialesDisponibles;
+        this.listClientes = new LinkedList<>();
+        this.listMecanicos = new LinkedList<>();
+        this.listBicicletas = new LinkedList<>();
+        this.listOrdenesServicio = new LinkedList<>();
     }
 
     //Getters y setters
@@ -185,13 +189,16 @@ public class Taller {
 
     //Buscar ordenes de servicio por fecha
     public LinkedList<OrdenServicio> getHistorialServicioFecha(Date fecha) {
-        LinkedList <OrdenServicio> listHistorialServicioFecha = new LinkedList<>();
+        LinkedList <OrdenServicio> lista = new LinkedList<>();
+
         for(OrdenServicio ordenServicio : listOrdenesServicio) {
-            if(ordenServicio.getFechaIngreso().equals(fecha)) {
-                listHistorialServicioFecha.add(ordenServicio);
+            Date fechaOrden = ordenServicio.getFechaIngreso();
+
+            if (fechaOrden != null && fechaOrden.getYear() == fecha.getYear() && fechaOrden.getMonth() == fecha.getMonth() && fechaOrden.getDate() == fecha.getDate()) {
+                lista.add(ordenServicio);
             }
         }
-        return listHistorialServicioFecha;
+        return lista;
     }
 
     //Crear mensaje de alerta de stock bajo

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0"
+      xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="viewController.TallerViewController">
+
+    <padding>
+        <Insets bottom="20.0"
+                left="25.0"
+                right="25.0"
+                top="20.0"/>
+    </padding>
+
+    <children>
+
+        <VBox spacing="5.0">
+            <children>
+
+                <Label text="Consultas del Taller"
+                       textFill="#1d3557">
+                    <font>
+                        <Font name="System Bold" size="22.0"/>
+                    </font>
+                </Label>
+
+                <Label text="Consulta de historial, órdenes de servicio y stock"
+                       textFill="#457b9d"/>
+
+                <Separator/>
+
+            </children>
+        </VBox>
+
+
+        <!-- HISTORIAL POR SERIAL -->
+
+        <Label text="Historial de bicicleta">
+            <font>
+                <Font name="System Bold" size="16.0"/>
+            </font>
+        </Label>
+
+        <HBox spacing="10.0">
+            <children>
+
+                <TextField fx:id="txtSerial"
+                           promptText="Serial de la bicicleta"
+                           prefWidth="250.0"/>
+
+                <Button fx:id="btnBuscarSerial"
+                        text="Buscar historial"
+                        onAction="#handleBuscarSerial"/>
+
+            </children>
+        </HBox>
+
+        <TableView fx:id="tablaHistorial"
+                   prefHeight="200.0">
+
+            <columns>
+
+                <TableColumn fx:id="colIdHistorial"
+                             text="ID Servicio"
+                             prefWidth="100.0"/>
+
+                <TableColumn fx:id="colFechaHistorial"
+                             text="Fecha"
+                             prefWidth="100.0"/>
+
+                <TableColumn fx:id="colMotivoHistorial"
+                             text="Motivo"
+                             prefWidth="180.0"/>
+
+                <TableColumn fx:id="colDiagnosticoHistorial"
+                             text="Diagnóstico"
+                             prefWidth="180.0"/>
+
+                <TableColumn fx:id="colTrabajoHistorial"
+                             text="Trabajo realizado"
+                             prefWidth="180.0"/>
+
+                <TableColumn fx:id="colCostoHistorial"
+                             text="Costo"
+                             prefWidth="100.0"/>
+
+            </columns>
+
+        </TableView>
+
+
+        <!-- ÓRDENES POR FECHA -->
+
+        <Label text="Órdenes de servicio por fecha">
+            <font>
+                <Font name="System Bold" size="16.0"/>
+            </font>
+        </Label>
+
+        <HBox spacing="10.0">
+            <children>
+
+                <DatePicker fx:id="dpFecha"
+                            promptText="Seleccionar fecha"/>
+
+                <Button fx:id="btnBuscarFecha"
+                        text="Buscar órdenes"
+                        onAction="#handleBuscarFecha"/>
+
+            </children>
+        </HBox>
+
+        <TableView fx:id="tablaFecha"
+                   prefHeight="200.0">
+
+            <columns>
+
+                <TableColumn fx:id="colIdFecha"
+                             text="ID Servicio"
+                             prefWidth="100.0"/>
+
+                <TableColumn fx:id="colFechaOrden"
+                             text="Fecha"
+                             prefWidth="100.0"/>
+
+                <TableColumn fx:id="colMotivoFecha"
+                             text="Motivo"
+                             prefWidth="180.0"/>
+
+                <TableColumn fx:id="colDiagnosticoFecha"
+                             text="Diagnóstico"
+                             prefWidth="180.0"/>
+
+                <TableColumn fx:id="colTrabajoFecha"
+                             text="Trabajo realizado"
+                             prefWidth="180.0"/>
+
+                <TableColumn fx:id="colCostoFecha"
+                             text="Costo"
+                             prefWidth="100.0"/>
+
+            </columns>
+
+        </TableView>
+
+
+        <!-- STOCK -->
+
+        <Separator/>
+
+        <HBox spacing="15.0"
+              alignment="CENTER_LEFT">
+
+            <children>
+
+                <Button fx:id="btnStock"
+                        text="Consultar stock"
+                        onAction="#handleStock"/>
+
+                <Label fx:id="lblStock"
+                       text="Stock: no consultado"/>
+
+            </children>
+
+        </HBox>
+
+    </children>
+
+</VBox>

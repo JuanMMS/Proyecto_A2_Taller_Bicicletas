@@ -1,17 +1,31 @@
 package controller;
 
-import model.*;
+import model.OrdenServicio;
+import model.Taller;
+
+import java.util.Date;
+import java.util.LinkedList;
 
 public class TallerController {
-    //Crear variable del taller
-    Taller taller;
 
-    //Vincular instancia con el controller
+    private Taller taller;
+
     public TallerController(Taller taller) {
         this.taller = taller;
     }
 
-    //Conectar funciones del model con el viewController
+    // Buscar historial de servicios de una bicicleta por su serial
+    public LinkedList<OrdenServicio> buscarHistorialPorSerial(String serial) {
+        return taller.getHistorialServicioSerial(serial);
+    }
 
+    // Buscar órdenes de servicio realizadas en una fecha
+    public LinkedList<OrdenServicio> buscarOrdenesPorFecha(Date fecha) {
+        return taller.getHistorialServicioFecha(fecha);
+    }
 
+    // Obtener mensaje de alerta de stock
+    public String obtenerAlertaStock() {
+        return taller.crearMensajeAlertaStockBajo();
+    }
 }
