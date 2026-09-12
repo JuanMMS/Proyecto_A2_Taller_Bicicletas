@@ -1,4 +1,4 @@
-module org.example.proyecto_a2_taller_bicicletas {
+module java {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
