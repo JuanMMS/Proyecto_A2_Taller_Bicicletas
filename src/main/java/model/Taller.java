@@ -1,21 +1,24 @@
 package model;
 
+import java.util.Date;
 import java.util.LinkedList;
 
 public class Taller {
     private String nombre;
     private String id;
     private String direccion;
+    private int materialesDisponibles;
     private LinkedList<Cliente> listClientes;
     private LinkedList<Mecanico> listMecanicos;
     private LinkedList<Bicicleta> listBicicletas;
     private LinkedList<OrdenServicio> listOrdenesServicio;
 
     //Constructor
-    public Taller(String nombre, String id, String direccion) {
+    public Taller(String nombre, String id, String direccion, int materialesDisponibles) {
         this.nombre = nombre;
         this.id = id;
         this.direccion = direccion;
+        this.materialesDisponibles = materialesDisponibles;
     }
 
     //Getters y setters
@@ -42,6 +45,14 @@ public class Taller {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public int getMaterialesDisponibles() {
+        return materialesDisponibles;
+    }
+
+    public void setMaterialesDisponibles(int materialesDisponibles) {
+        this.materialesDisponibles = materialesDisponibles;
     }
 
     public LinkedList<Cliente> getListClientes() {
@@ -149,6 +160,43 @@ public class Taller {
             }
         }
         return verificado;
+    }
+
+    //Verificar bicicleta registrada por serial
+    public boolean verificarSerial(String serial) {
+        boolean verificado = false;
+        for (Bicicleta bicicleta : listBicicletas) {
+            if (bicicleta.getNumSerial().equals(serial)) {
+                verificado = true;
+            }
+        }
+        return verificado;
+    }
+
+    //buscar historial de ordenes de servicio por serial
+    public LinkedList<OrdenServicio> getHistorialServicioSerial(String serial) {
+        for (Bicicleta bicicleta : listBicicletas) {
+            if (bicicleta.getNumSerial().equals(serial)) {
+                return bicicleta.getListOrdenesServicio();
+            }
+        }
+        return null;
+    }
+
+    //Buscar ordenes de servicio por fecha
+    public LinkedList<OrdenServicio> getHistorialServicioFecha(Date fecha) {
+        LinkedList <OrdenServicio> listHistorialServicioFecha = new LinkedList<>();
+        for(OrdenServicio ordenServicio : listOrdenesServicio) {
+            if(ordenServicio.getFechaIngreso().equals(fecha)) {
+                listHistorialServicioFecha.add(ordenServicio);
+            }
+        }
+        return listHistorialServicioFecha;
+    }
+
+    //Crear mensaje de alerta de stock bajo
+    public String crearMensajeAlertaStockBajo() {
+        return "Alerta, stock de materiales bajo, quedan " + materialesDisponibles + " disponibles.";
     }
 
 
