@@ -12,6 +12,7 @@ public class Taller {
     private LinkedList<Mecanico> listMecanicos;
     private LinkedList<Bicicleta> listBicicletas;
     private LinkedList<OrdenServicio> listOrdenesServicio;
+    private LinkedList<HistorialOrdenesServicio> listHistorialOrdenesServicio;
 
     //Constructor
     public Taller(String nombre, String id, String direccion, int materialesDisponibles) {
@@ -23,6 +24,7 @@ public class Taller {
         this.listMecanicos = new LinkedList<>();
         this.listBicicletas = new LinkedList<>();
         this.listOrdenesServicio = new LinkedList<>();
+        this.listHistorialOrdenesServicio = new LinkedList<>();
     }
 
     //Getters y setters
@@ -212,7 +214,10 @@ public class Taller {
 
     //Crear mensaje de alerta de stock bajo
     public String crearMensajeAlertaStockBajo() {
-        return "Alerta, stock de materiales bajo, quedan " + materialesDisponibles + " disponibles.";
+        if (this.getMaterialesDisponibles() < 50) {
+            return "Alerta, stock de materiales bajo, quedan " + materialesDisponibles + " disponibles.";
+        } else
+            return "Todo perfecto, hay suficientes materiales, quedan " + materialesDisponibles + " disponibles.";
     }
 
 
@@ -232,4 +237,11 @@ public class Taller {
                 + ", Direccion: " + direccion;
     }
 
+    public LinkedList<HistorialOrdenesServicio> getListHistorialOrdenesServicio() {
+        return listHistorialOrdenesServicio;
+    }
+
+    public void setListHistorialOrdenesServicio(LinkedList<HistorialOrdenesServicio> listHistorialOrdenesServicio) {
+        this.listHistorialOrdenesServicio = listHistorialOrdenesServicio;
+    }
 }

@@ -9,6 +9,7 @@ public class Bicicleta {
     private String anio;
     private LinkedList<OrdenServicio> listOrdenesServicio;
     private Cliente theClienteDueno;
+    private LinkedList<HistorialServicios> historialServicios;
 
     //Constructor
 
@@ -19,6 +20,7 @@ public class Bicicleta {
         this.anio = anio;
         this.listOrdenesServicio = new LinkedList<>();
         this.theClienteDueno = null;
+        this.historialServicios = new LinkedList<>();
     }
 
     //Getters y Setters
@@ -78,5 +80,13 @@ public class Bicicleta {
                 ", numSerial='" + numSerial + "\n" +
                 ", anio='" + anio + "\n" +
                 ", theClienteDueno=" + theClienteDueno;
+    }
+
+    public LinkedList<HistorialServicios> getHistorialServicios() {
+        return historialServicios;
+    }
+
+    public void setHistorialServicios(LinkedList<HistorialServicios> historialServicios) {
+        this.historialServicios = historialServicios;
     }
 }

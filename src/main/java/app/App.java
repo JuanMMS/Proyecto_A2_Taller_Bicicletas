@@ -14,7 +14,7 @@ import java.io.IOException;
 public class App extends Application {
 
     //Crear el taller de la aplicacion
-    public static Taller taller = new Taller("Taller Bicicletas UQ", "12345", "El bunker", 30);
+    public static Taller taller = new Taller("Taller Bicicletas UQ", "12345", "El bunker", 300);
 
     //Crear el controller
     private final TallerController tallerController = new TallerController(taller);
