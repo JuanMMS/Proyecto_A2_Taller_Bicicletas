@@ -189,7 +189,8 @@ public class TallerViewController {
         if (historial == null) {
             mostrarMensaje(
                     "Bicicleta no encontrada",
-                    "No existe una bicicleta registrada con ese serial."
+                    "No existe una bicicleta registrada con ese serial. \n" +
+                            "Serial ingresado: " + serial + "\n"
             );
 
             tablaHistorial.getItems().clear();

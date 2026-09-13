@@ -93,6 +93,15 @@ public class Taller {
 
     public LinkedList<OrdenServicio> getOrdenesServicio() {return listOrdenesServicio;}
 
+    public boolean agregarBicicleta(Bicicleta bicicleta) {
+        boolean retorno = false;
+        if (!verificarSerial(bicicleta.getNumSerial())) {
+            listBicicletas.add(bicicleta);
+            retorno = true;
+        }
+        return retorno;
+    }
+
     //Metodo para agregar una orden de servicio a la lista de ordenes de servicio del taller
     public boolean agregarOrdenServicio(OrdenServicio ordenServicio) {
         boolean centinela = false;
