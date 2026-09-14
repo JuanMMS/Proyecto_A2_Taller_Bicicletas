@@ -5,8 +5,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Bicicleta;
 import model.Taller;
+import viewController.OrdenServicioViewController;
 import viewController.TallerViewController;
 
 import java.io.IOException;
@@ -32,6 +32,13 @@ public class App extends Application {
         stage.setScene(scene);
         stage.setTitle("Consultas del taller");
         this.stage.show();
+    }
+
+    public void abrirVentanaOrdenServicio() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/assets/crudOrdenServicio.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        OrdenServicioViewController ordenServicioViewController = fxmlLoader.getController();
+        ordenServicioViewController.setTallerController(taller);
     }
 
     public static void main(String[] args) {launch(args);}

@@ -3,6 +3,8 @@
 
 
 package viewController;
+import app.App;
+import controller.TallerController;
 import model.Bicicleta;
 import model.Mecanico;
 import model.OrdenServicio;
@@ -31,6 +33,10 @@ import java.util.ResourceBundle;
  * Sigue el patrón MVC y maneja la interacción entre la interfaz FXML y el modelo de datos del taller.
  */
 public class OrdenServicioViewController implements Initializable {
+
+    private App app;
+
+    private TallerController tallerController;
 
     @FXML
     private DatePicker dpFechaIngreso;
@@ -79,8 +85,8 @@ public class OrdenServicioViewController implements Initializable {
      * Establece la instancia del Taller y carga los combos de bicicletas y mecánicos.
      * @param taller Instancia principal del modelo Taller.
      */
-    public void setTaller(Taller taller) {
-        this.taller = taller;
+    public void setTallerController(TallerController tallerController) {
+        this.tallerController = tallerController;
         cargarDatosCombos();
     }
 
@@ -88,8 +94,8 @@ public class OrdenServicioViewController implements Initializable {
      * Carga las listas observables en los ComboBox desde la clase Taller.
      */
     private void cargarDatosCombos() {
-        if (taller != null) {
-            ObservableList<Bicicleta> listaBicicletas = FXCollections.observableArrayList(taller.getListBicicletas());
+        if (tallerController.getTaller() != null) {
+            ObservableList<Bicicleta> listaBicicletas = FXCollections.observableArrayList(tallerController.getListBicicletas());
             cbBicicleta.setItems(listaBicicletas);
 
             ObservableList<Mecanico> listaMecanicos = FXCollections.observableArrayList(taller.getListMecanicos());

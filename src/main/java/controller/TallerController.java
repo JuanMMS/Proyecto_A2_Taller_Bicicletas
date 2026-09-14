@@ -28,4 +28,8 @@ public class TallerController {
     public String obtenerAlertaStock() {
         return taller.crearMensajeAlertaStockBajo();
     }
+
+    public Taller getTaller() {
+        return this.taller;
+    }
 }
