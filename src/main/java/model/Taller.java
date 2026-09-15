@@ -107,7 +107,7 @@ public class Taller {
     //Metodo para agregar una orden de servicio a la lista de ordenes de servicio del taller
     public boolean agregarOrdenServicio(OrdenServicio ordenServicio) {
         boolean centinela = false;
-        if (!verificarCliente(ordenServicio.getIdServicio())) {
+        if (!verificarOrdenServicio(ordenServicio.getIdServicio())) {
             listOrdenesServicio.add(ordenServicio);
             centinela = true;
         }

@@ -2,7 +2,6 @@ module java {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
-    requires java;
 
     opens app to javafx.fxml;
     exports app;

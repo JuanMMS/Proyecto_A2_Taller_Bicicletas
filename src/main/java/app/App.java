@@ -1,5 +1,6 @@
 package app;
 
+import controller.OrdenServicioController;
 import controller.TallerController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,8 +17,10 @@ public class App extends Application {
     //Crear el taller de la aplicacion
     public static Taller taller = new Taller("Taller Bicicletas UQ", "12345", "El bunker", 300);
 
-    //Crear el controller
+    //Crear los controller
     private final TallerController tallerController = new TallerController(taller);
+
+    private final OrdenServicioController ordenServicioController = new OrdenServicioController(tallerController);
 
     Stage stage = new Stage();
     //Iniciar la aplicacion
@@ -35,10 +38,16 @@ public class App extends Application {
     }
 
     public void abrirVentanaOrdenServicio() throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/assets/crudOrdenServicio.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        OrdenServicioViewController ordenServicioViewController = fxmlLoader.getController();
-        ordenServicioViewController.setTallerController(taller);
+        OrdenServicioViewController viewController = fxmlLoader.getController();
+        viewController.setOrdenServicioController(ordenServicioController);
+        viewController.setApp(this);
+        Stage ventana = new Stage();
+        ventana.setScene(scene);
+        ventana.setTitle("Gestión de Orden de Servicio");
+        ventana.show();
     }
 
     public static void main(String[] args) {launch(args);}
