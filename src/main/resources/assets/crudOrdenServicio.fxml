@@ -124,7 +124,7 @@
         <HBox alignment="CENTER_RIGHT" spacing="12.0">
             <children>
                 <Button fx:id="btnLimpiar" mnemonicParsing="false" onAction="#handleLimpiar" prefHeight="32.0" prefWidth="100.0" style="-fx-background-color: #f1faee; -fx-border-color: #a8dadc; -fx-border-radius: 4;" text="Limpiar" />
-                <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#handleCancelar" prefHeight="32.0" prefWidth="100.0" style="-fx-background-color: #e63946;" text="Cancelar" textFill="WHITE">
+                <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#handleVolverVentanaPrincipal" prefHeight="32.0" prefWidth="100.0" style="-fx-background-color: #e63946;" text="Cancelar" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
