@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Taller;
 import viewController.*;
-
+import model.*;
 import java.io.IOException;
 
 public class App extends Application {
@@ -28,7 +28,7 @@ public class App extends Application {
 
 
     Stage stage = new Stage();
-    
+
     //Iniciar la aplicacion
     @Override
     public void start(Stage stage) throws IOException {
@@ -109,5 +109,14 @@ public class App extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {launch(args);}
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    Cliente cl1 = new Cliente("Sebas", "1", "12", "Por ahi");
+    Boolean si = taller.agregarCliente(cl1);
+    Mecanico mc1 = new Mecanico("cami", "nova","1");
+    boolean si2 = taller.agregarMecanico(mc1);
+    Bicicleta bc1 = new Bicicleta("Audi","rojo","123","2000");
+    boolean si3 = taller.agregarBicicleta(bc1);
 }
