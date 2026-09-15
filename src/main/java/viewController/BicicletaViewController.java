@@ -112,7 +112,6 @@ public class BicicletaViewController {
 
     @FXML
     private void onAgregarBicicleta() {
-
         try {
 
             Bicicleta bicicleta = buildBicicleta();
@@ -121,6 +120,9 @@ public class BicicletaViewController {
                     bicicletaController.crearBicicleta(bicicleta);
 
             if (agregado) {
+                //int index = listBicicletas.indexOf(selectedBicicleta);
+
+                //listBicicletas.set(index, bicicleta);
 
                 mostrarMensaje(
                         Alert.AlertType.INFORMATION,
@@ -167,15 +169,16 @@ public class BicicletaViewController {
 
         try {
 
-            Bicicleta bicicleta = buildBicicleta();
+            Bicicleta bicicletaActualizada = buildBicicleta();
 
-            boolean actualizado =
-                    bicicletaController.actualizarBicicleta(
-                            selectedBicicleta.getNumSerial(),
-                            bicicleta
-                    );
+            String serialAnterior = selectedBicicleta.getNumSerial();
+
+            boolean actualizado = bicicletaController.actualizarBicicleta(serialAnterior, bicicletaActualizada);
 
             if (actualizado) {
+
+                int index = listBicicletas.indexOf(selectedBicicleta);
+                listBicicletas.set(index, bicicletaActualizada);
 
                 mostrarMensaje(
                         Alert.AlertType.INFORMATION,

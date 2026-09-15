@@ -255,6 +255,7 @@ public class Taller {
         for (Bicicleta bicicleta : listBicicletas) {
             if (bicicleta.getNumSerial().equals(serial)) {
                 verificado = true;
+                break;
             }
         }
         return verificado;
