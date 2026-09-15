@@ -12,6 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.beans.property.SimpleStringProperty;
 import model.Bicicleta;
 
+import java.io.IOException;
+
 public class BicicletaViewController {
     private App app;
 
@@ -311,5 +313,10 @@ public class BicicletaViewController {
 
     public void setApp(App app) {
         this.app = app;
+    }
+
+    @FXML
+    private void handleVolverVentanaPrincipal() throws IOException {
+        app.abrirVentanaPrincipal();
     }
 }
