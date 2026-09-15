@@ -30,9 +30,6 @@ public class OrdenServicio {
         this.theBicicletaOrdenServicio = theBicicletaOrdenServicio;
     }
 
-    public OrdenServicio(LocalDate fechaIngreso, LocalTime horaIngreso, String motivoServicio, String diagnostico, String trabajoRealizado, double costoTotal, Mecanico mecanico, Bicicleta bicicleta) {
-    }
-
     //Getters y Setters
 
     public Date getFechaIngreso() {

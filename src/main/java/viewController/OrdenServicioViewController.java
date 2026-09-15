@@ -1,13 +1,7 @@
-
-//ESTA ES UNA CLASE PRUEBA
-
-
 package viewController;
 
-import model.Bicicleta;
-import model.Mecanico;
-import model.OrdenServicio;
-import model.Taller;
+import app.App;
+import controller.OrdenServicioController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,18 +14,23 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Bicicleta;
+import model.Mecanico;
+import model.OrdenServicio;
 
 import java.net.URL;
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
-/**
- * Controlador de la vista de gestión de Ordenes de Servicio.
- * Sigue el patrón MVC y maneja la interacción entre la interfaz FXML y el modelo de datos del taller.
- */
 public class OrdenServicioViewController implements Initializable {
+
+    private App app;
+
+    private OrdenServicioController ordenServicioController;
 
     @FXML
     private DatePicker dpFechaIngreso;
@@ -66,36 +65,43 @@ public class OrdenServicioViewController implements Initializable {
     @FXML
     private Button btnCancelar;
 
-    // Referencia al modelo principal (Taller)
-    private Taller taller;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Inicialización de campos con fecha y hora actual por defecto
         dpFechaIngreso.setValue(LocalDate.now());
-        txtHoraIngreso.setText(LocalTime.now().withNano(0).toString());
+        txtHoraIngreso.setText(
+                LocalTime.now().withNano(0).toString()
+        );
     }
 
-    /**
-     * Establece la instancia del Taller y carga los combos de bicicletas y mecánicos.
-     * @param taller Instancia principal del modelo Taller.
-     */
-    public void setTaller(Taller taller) {
-        this.taller = taller;
+    public void setApp(App app) {
+        this.app = app;
+    }
+
+    public void setOrdenServicioController(
+            OrdenServicioController ordenServicioController
+    ) {
+        this.ordenServicioController = ordenServicioController;
         cargarDatosCombos();
     }
 
-    /**
-     * Carga las listas observables en los ComboBox desde la clase Taller.
-     */
     private void cargarDatosCombos() {
-        if (taller != null) {
-            ObservableList<Bicicleta> listaBicicletas = FXCollections.observableArrayList(taller.getListBicicletas());
-            cbBicicleta.setItems(listaBicicletas);
 
-            ObservableList<Mecanico> listaMecanicos = FXCollections.observableArrayList(taller.getListMecanicos());
-            cbMecanico.setItems(listaMecanicos);
+        if (ordenServicioController == null) {
+            return;
         }
+
+        ObservableList<Bicicleta> listaBicicletas =
+                FXCollections.observableArrayList(
+                        ordenServicioController.obtenerListaBicicletas()
+                );
+
+        ObservableList<Mecanico> listaMecanicos =
+                FXCollections.observableArrayList(
+                        ordenServicioController.obtenerListaMecanicos()
+                );
+
+        cbBicicleta.setItems(listaBicicletas);
+        cbMecanico.setItems(listaMecanicos);
     }
 
     /**
@@ -105,16 +111,32 @@ public class OrdenServicioViewController implements Initializable {
     private void handleGuardarOrden(ActionEvent event) {
         if (validarCampos()) {
             try {
-                LocalDate fechaIngreso = dpFechaIngreso.getValue();
-                LocalTime horaIngreso = LocalTime.parse(txtHoraIngreso.getText().trim());
+                LocalDate fechaIngresoLocal = dpFechaIngreso.getValue();
+                LocalTime horaIngresoLocal = LocalTime.parse(txtHoraIngreso.getText().trim());
+
+                Date fechaIngreso = Date.valueOf(fechaIngresoLocal);
+                Time horaIngreso = Time.valueOf(horaIngresoLocal);
+
                 Bicicleta bicicleta = cbBicicleta.getValue();
                 Mecanico mecanico = cbMecanico.getValue();
-                String motivoServicio = txtMotivoServicio.getText().trim();
-                String diagnostico = txtDiagnostico.getText().trim();
-                String trabajoRealizado = txtTrabajoRealizado.getText().trim();
-                double costoTotal = Double.parseDouble(txtCostoTotal.getText().trim());
 
-                // Crear la nueva orden de servicio según el modelo UML
+                String motivoServicio =
+                        txtMotivoServicio.getText().trim();
+
+                String diagnostico =
+                        txtDiagnostico.getText().trim();
+
+                String trabajoRealizado =
+                        txtTrabajoRealizado.getText().trim();
+
+                double costoTotal =
+                        Double.parseDouble(txtCostoTotal.getText().trim());
+
+                // Generar ID único mediante el controller
+                String idServicio =
+                        ordenServicioController.generarIdOrdenServicio();
+
+                // Crear la nueva orden
                 OrdenServicio nuevaOrden = new OrdenServicio(
                         fechaIngreso,
                         horaIngreso,
@@ -122,28 +144,63 @@ public class OrdenServicioViewController implements Initializable {
                         diagnostico,
                         trabajoRealizado,
                         costoTotal,
+                        idServicio,
                         mecanico,
                         bicicleta
                 );
 
-                // Registrar en el Taller
-                if (taller != null) {
-                    taller.getListOrdenesServicio().add(nuevaOrden);
+                // Registrar la orden mediante el controller
+                boolean creada =
+                        ordenServicioController.crearOrdenServicio(nuevaOrden);
+
+                if (creada) {
+
+                    mostrarAlerta(
+                            Alert.AlertType.INFORMATION,
+                            "Éxito",
+                            "Orden registrada",
+                            "La orden " + idServicio
+                                    + " fue registrada correctamente."
+                    );
+
+                    limpiarFormulario();
+
+                } else {
+
+                    mostrarAlerta(
+                            Alert.AlertType.WARNING,
+                            "Orden no registrada",
+                            "No se pudo registrar la orden",
+                            "Ya existe una orden con ese identificador."
+                    );
                 }
 
-                mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Orden registrada",
-                        "La orden de servicio para la bicicleta " + bicicleta.getNumSerial() + " fue guardada correctamente.");
-
-                limpiarFormulario();
-
             } catch (DateTimeParseException e) {
-                mostrarAlerta(Alert.AlertType.ERROR, "Error de Formato", "Formato de Hora Inválido",
-                        "Ingrese la hora en formato HH:mm o HH:mm:ss (ejemplo: 14:30).");
+
+                mostrarAlerta(
+                        Alert.AlertType.ERROR,
+                        "Error de Formato",
+                        "Formato de Hora Inválido",
+                        "Ingrese la hora en formato HH:mm o HH:mm:ss."
+                );
+
             } catch (NumberFormatException e) {
-                mostrarAlerta(Alert.AlertType.ERROR, "Error de Formato", "Costo Inválido",
-                        "Ingrese un valor numérico válido para el costo total.");
+
+                mostrarAlerta(
+                        Alert.AlertType.ERROR,
+                        "Error de Formato",
+                        "Costo Inválido",
+                        "Ingrese un valor numérico válido."
+                );
+
             } catch (Exception e) {
-                mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo guardar la orden", e.getMessage());
+
+                mostrarAlerta(
+                        Alert.AlertType.ERROR,
+                        "Error",
+                        "No se pudo guardar la orden",
+                        e.getMessage()
+                );
             }
         }
     }
