@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import model.Bicicleta;
 import model.Taller;
 import viewController.TallerViewController;
+import viewController.VentanaPrincipalViewController;
 
 import java.io.IOException;
 
@@ -33,7 +34,39 @@ public class App extends Application {
         stage.setTitle("Consultas del taller");
         this.stage.show();
     }
+    public void abrirVentanaPrincipal() throws IOException {
 
+<<<<<<< Updated upstream
+=======
+        FXMLLoader fxmlLoader =
+                new FXMLLoader(getClass().getResource(
+                        "/assets/ventanaPrincipal.fxml"));
+
+        Scene scene = new Scene(fxmlLoader.load());
+
+        VentanaPrincipalViewController viewController =
+                fxmlLoader.getController();
+
+        viewController.setApp(this);
+
+        this.stage.setScene(scene);
+        this.stage.setTitle("Taller de Bicicletas");
+        this.stage.show();
+    }
+    public void abrirVentanaOrdenServicio() throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/assets/crudOrdenServicio.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        OrdenServicioViewController viewController = fxmlLoader.getController();
+        viewController.setOrdenServicioController(ordenServicioController);
+        viewController.setApp(this);
+        Stage ventana = new Stage();
+        ventana.setScene(scene);
+        ventana.setTitle("Gestión de Orden de Servicio");
+        ventana.show();
+    }
+
+>>>>>>> Stashed changes
     public static void main(String[] args) {launch(args);}
 
 }
