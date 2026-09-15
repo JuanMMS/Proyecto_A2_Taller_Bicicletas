@@ -126,6 +126,7 @@ public class Taller {
                 bicicletaList.setMarca(bicicleta.getMarca());
                 bicicletaList.setColor(bicicleta.getColor());
                 bicicletaList.setAnio(bicicleta.getAnio());
+                actualizado = true;
                 break;
             }
         }
@@ -315,7 +316,7 @@ public class Taller {
     public boolean actualizarMecanico(String numIdentificacion, Mecanico mecanico) {
         boolean actualizado = false;
         for (Mecanico mecanicoList : listMecanicos) {
-            if (mecanico.getId().equals(numIdentificacion)) {
+            if (mecanicoList.getId().equals(numIdentificacion)) {
                 mecanicoList.setNombre(mecanico.getNombre());
                 mecanicoList.setApellido(mecanico.getApellido());
                 mecanicoList.setId(numIdentificacion);

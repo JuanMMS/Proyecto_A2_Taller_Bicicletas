@@ -235,8 +235,8 @@ public class ClienteViewController {
         String correo = txtCorreo.getText();
 
         return new Cliente(
-                cedula,
                 nombre,
+                cedula,
                 telefono,
                 correo
         );
