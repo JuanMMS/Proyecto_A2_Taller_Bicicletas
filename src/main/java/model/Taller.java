@@ -1,5 +1,7 @@
 package model;
 
+import javafx.scene.control.Menu;
+
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -182,11 +184,11 @@ public class Taller {
         boolean actualizado = false;
         for (Cliente clienteList : listClientes) {
             if (clienteList.getNumIdentificacion().equals(numIdentificacion)) {
-                cliente.setNombre(cliente.getNombre());
-                cliente.setApellido(cliente.getApellido());
-                cliente.setNumIdentificacion(numIdentificacion);
-                cliente.setTelefono(cliente.getTelefono());
-                cliente.setDireccion(cliente.getDireccion());
+                clienteList.setNombre(cliente.getNombre());
+                clienteList.setApellido(cliente.getApellido());
+                clienteList.setNumIdentificacion(numIdentificacion);
+                clienteList.setTelefono(cliente.getTelefono());
+                clienteList.setDireccion(cliente.getDireccion());
                 actualizado = true;
                 break;
             }
@@ -258,6 +260,55 @@ public class Taller {
     public LinkedList<OrdenServicio> verHistorialServicioSerial (String serial) {
         return null;
     }
+
+
+    //Metodo para crear mecanico y agregarlo a la lista
+    public boolean agregarMecanico(Mecanico mecanico) {
+        boolean centinela = false;
+        if (!verificarMecanico(mecanico.getId())) {
+            listMecanicos.add(mecanico);
+            centinela = true;
+        }
+        return centinela;
+    }
+    //Metodo para eliminar mecanico de la lista de mecanicos
+    public boolean eliminarMecanico(String iDMecanico) {
+        boolean eliminado = false;
+        for (Mecanico mecanico : listMecanicos) {
+            if (mecanico.getId().equals(iDMecanico)) {
+                listMecanicos.remove(mecanico);
+                eliminado = true;
+                break;
+            }
+        }
+        return eliminado;
+    }
+    //Metodo para modificar un mecanico en la lista de mecanicos
+    public boolean actualizarMecanico(String numIdentificacion, Mecanico mecanico) {
+        boolean actualizado = false;
+        for (Mecanico mecanicoList : listMecanicos) {
+            if (mecanico.getId().equals(numIdentificacion)) {
+                mecanicoList.setNombre(mecanico.getNombre());
+                mecanicoList.setApellido(mecanico.getApellido());
+                mecanicoList.setId(numIdentificacion);
+                actualizado = true;
+                break;
+            }
+        }
+        return actualizado;
+    }
+
+    //Metodo para verificar mecanico
+    public boolean verificarMecanico(String serial) {
+        boolean verificado = false;
+        for (Bicicleta bicicleta : listBicicletas) {
+            if (bicicleta.getNumSerial().equals(serial)) {
+                verificado = true;
+            }
+        }
+        return verificado;
+    }
+
 
 
     @Override
