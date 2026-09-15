@@ -460,6 +460,10 @@ public class ClienteViewController {
         this.app = app;
     }
 
+    public void mostrarClienteRegistrado(Cliente cliente) {
+        listClientes.add(cliente);
+    }
+
     // =========================
     // VOLVER A LA VENTANA PRINCIPAL
     // =========================
