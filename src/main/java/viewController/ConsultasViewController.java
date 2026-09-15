@@ -6,14 +6,14 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.OrdenServicio;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.LinkedList;
 
-public class TallerViewController {
+public class ConsultasViewController {
 
     private App app;
 
@@ -224,12 +224,9 @@ public class TallerViewController {
                         .toInstant()
         );
 
-        LinkedList<OrdenServicio> ordenes =
-                tallerController.buscarOrdenesPorFecha(fecha);
+        LinkedList<OrdenServicio> ordenes = tallerController.buscarOrdenesPorFecha(fecha);
 
-        tablaFecha.setItems(
-                FXCollections.observableArrayList(ordenes)
-        );
+        tablaFecha.setItems(FXCollections.observableArrayList(ordenes));
 
         if (ordenes.isEmpty()) {
             mostrarMensaje(
@@ -247,10 +244,17 @@ public class TallerViewController {
     @FXML
     private void handleStock() {
 
-        String mensaje =
-                tallerController.obtenerAlertaStock();
+        String mensaje = tallerController.obtenerAlertaStock();
 
         lblStock.setText(mensaje);
+    }
+
+    // =========================
+    // VOLVER A LA VENTANA PRINCIPAL
+    // =========================
+    @FXML
+    private void handleVolverVentanaPrincipal() throws IOException {
+        app.abrirVentanaPrincipal();
     }
 
 

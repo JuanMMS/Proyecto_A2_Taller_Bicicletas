@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewController.BicicletaViewController">
+
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+    <Label text="GESTIÓN DE BICICLETAS" />
+
+    <HBox spacing="10">
+
+        <Label text="Serial:" />
+
+        <TextField fx:id="txtNumSerial" promptText="Número de serial" />
+
+        <Label text="Marca:" />
+
+        <TextField fx:id="txtMarca" promptText="Marca" />
+
+        <Label text="Color:" />
+
+        <TextField fx:id="txtColor" promptText="Color" />
+
+        <Label text="Año:" />
+
+        <TextField fx:id="txtAnio" promptText="Año" />
+
+    </HBox>
+
+    <HBox spacing="10">
+
+        <Button fx:id="btnCrear" onAction="#onAgregarBicicleta" text="Crear" />
+
+        <Button fx:id="btnModificar" onAction="#onActualizarBicicleta" text="Modificar" />
+
+        <Button fx:id="btnEliminar" onAction="#onEliminarBicicleta" text="Eliminar" />
+
+        <Button fx:id="btnLimpiar" onAction="#onLimpiarCampos" text="Limpiar" />
+      <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#handleVolverVentanaPrincipal" text="Volver">
+         <HBox.margin>
+            <Insets left="485.0" />
+         </HBox.margin>
+      </Button>
+
+    </HBox>
+
+    <TableView fx:id="tblListBicicleta">
+
+        <columns>
+
+            <TableColumn fx:id="colNumSerial" text="Número Serial" />
+
+            <TableColumn fx:id="colMarca" text="Marca" />
+
+            <TableColumn fx:id="colColor" text="Color" />
+
+            <TableColumn fx:id="colAnio" text="Año" />
+
+        </columns>
+
+    </TableView>
+
+</VBox>

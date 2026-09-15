@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewController.MecanicoViewController">
+
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+    <Label text="GESTIÓN DE MECÁNICOS" />
+
+    <HBox spacing="10">
+        <Label text="ID:" />
+        <TextField fx:id="txtId" promptText="Ingrese el ID" />
+
+        <Label text="Nombre:" />
+        <TextField fx:id="txtNombre" promptText="Ingrese el nombre" />
+
+        <Label text="Apellido:" />
+        <TextField fx:id="txtApellido" promptText="Ingrese el apellido" />
+    </HBox>
+
+    <HBox spacing="10">
+        <Button fx:id="btnCrear" onAction="#onAgregarMecanico" text="Crear" />
+
+        <Button fx:id="btnModificar" onAction="#onActualizarMecanico" text="Modificar" />
+
+        <Button fx:id="btnEliminar" onAction="#onEliminarMecanico" text="Eliminar" />
+
+        <Button fx:id="btnLimpiar" onAction="#onLimpiarCampos" text="Limpiar" />
+      <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#handleVolverVentanaPrincipal" text="Volver">
+         <HBox.margin>
+            <Insets left="290.0" />
+         </HBox.margin>
+      </Button>
+    </HBox>
+
+    <TableView fx:id="tblListMecanico">
+
+        <columns>
+
+            <TableColumn fx:id="colId" text="ID" />
+
+            <TableColumn fx:id="colNombre" text="Nombre" />
+
+            <TableColumn fx:id="colApellido" text="Apellido" />
+
+        </columns>
+
+    </TableView>
+
+</VBox>

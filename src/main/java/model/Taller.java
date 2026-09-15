@@ -1,5 +1,7 @@
 package model;
 
+import javafx.scene.control.Menu;
+
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -103,11 +105,41 @@ public class Taller {
         }
         return retorno;
     }
+    //Metodo para eliminar bicicletas
+    public boolean eliminarBicicleta(String numSerial) {
+            boolean eliminado = false;
+            for (Bicicleta bicicleta : listBicicletas) {
+                if (bicicleta.getNumSerial().equals(numSerial)) {
+                    listBicicletas.remove(bicicleta);
+                    eliminado = true;
+                    break;
+                }
+            }
+            return eliminado;
+        }
+
+    //Metodo para modificar un bicicleta en la lista de bicicletas
+    public boolean actualizarBicicleta(String numSerial, Bicicleta bicicleta) {
+        boolean actualizado = false;
+        for (Bicicleta bicicletaList : listBicicletas) {
+            if (bicicletaList.getNumSerial().equals(numSerial)) {
+                bicicletaList.setMarca(bicicleta.getMarca());
+                bicicletaList.setColor(bicicleta.getColor());
+                bicicletaList.setAnio(bicicleta.getAnio());
+                actualizado = true;
+                break;
+            }
+        }
+        return actualizado;
+    }
+
+
+
 
     //Metodo para agregar una orden de servicio a la lista de ordenes de servicio del taller
     public boolean agregarOrdenServicio(OrdenServicio ordenServicio) {
         boolean centinela = false;
-        if (!verificarCliente(ordenServicio.getIdServicio())) {
+        if (!verificarOrdenServicio(ordenServicio.getIdServicio())) {
             listOrdenesServicio.add(ordenServicio);
             centinela = true;
         }
@@ -159,12 +191,41 @@ public class Taller {
     //Metodo para agregar cliente a la lista de clientes
     public boolean agregarCliente(Cliente cliente) {
         boolean centinela = false;
-        if (!verificarCliente(cliente.getNombre())) {
+        if (!verificarCliente(cliente.getNumIdentificacion())) {
             listClientes.add(cliente);
             centinela = true;
         }
         return centinela;
     }
+    //Metodo para eliminar Cliente de la lista de clientes
+        public boolean eliminarCliente(String numIdentificacionCliente) {
+        boolean eliminado = false;
+        if (verificarCliente(numIdentificacionCliente)) {
+            listClientes.remove(numIdentificacionCliente);
+            eliminado = true;
+        }
+
+        return eliminado;
+    }
+
+    //Metodo para modificar un cliente en la lista de clientes
+    public boolean actualizarCliente(String numIdentificacion, Cliente cliente) {
+        boolean actualizado = false;
+        for (Cliente clienteList : listClientes) {
+            if (clienteList.getNumIdentificacion().equals(numIdentificacion)) {
+                clienteList.setNombre(cliente.getNombre());
+                clienteList.setApellido(cliente.getApellido());
+                clienteList.setNumIdentificacion(numIdentificacion);
+                clienteList.setTelefono(cliente.getTelefono());
+                clienteList.setDireccion(cliente.getDireccion());
+                actualizado = true;
+                break;
+            }
+        }
+        return actualizado;
+    }
+
+
 
     //Metodo para verificar que el cliente no esté existente
     public boolean verificarCliente(String numIdentificacion) {
@@ -227,6 +288,54 @@ public class Taller {
     //metodo para consultar el historial de servicios por serial de bicicleta
     public LinkedList<OrdenServicio> verHistorialServicioSerial (String serial) {
         return null;
+    }
+
+
+    //Metodo para crear mecanico y agregarlo a la lista
+    public boolean agregarMecanico(Mecanico mecanico) {
+        boolean centinela = false;
+        if (!verificarMecanico(mecanico.getId())) {
+            listMecanicos.add(mecanico);
+            centinela = true;
+        }
+        return centinela;
+    }
+    //Metodo para eliminar mecanico de la lista de mecanicos
+    public boolean eliminarMecanico(String iDMecanico) {
+        boolean eliminado = false;
+        for (Mecanico mecanico : listMecanicos) {
+            if (mecanico.getId().equals(iDMecanico)) {
+                listMecanicos.remove(mecanico);
+                eliminado = true;
+                break;
+            }
+        }
+        return eliminado;
+    }
+    //Metodo para modificar un mecanico en la lista de mecanicos
+    public boolean actualizarMecanico(String numIdentificacion, Mecanico mecanico) {
+        boolean actualizado = false;
+        for (Mecanico mecanicoList : listMecanicos) {
+            if (mecanicoList.getId().equals(numIdentificacion)) {
+                mecanicoList.setNombre(mecanico.getNombre());
+                mecanicoList.setApellido(mecanico.getApellido());
+                mecanicoList.setId(numIdentificacion);
+                actualizado = true;
+                break;
+            }
+        }
+        return actualizado;
+    }
+
+    //Metodo para verificar mecanico
+    public boolean verificarMecanico(String iD) {
+        boolean verificado = false;
+        for (Mecanico mecanico : listMecanicos) {
+            if (mecanico.getId().equals(iD)) {
+                verificado = true;
+            }
+        }
+        return verificado;
     }
 
 
