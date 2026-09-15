@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import model.Taller;
 import viewController.OrdenServicioViewController;
 import viewController.TallerViewController;
+import viewController.VentanaPrincipalViewController;
 
 import java.io.IOException;
 
@@ -36,6 +37,8 @@ public class App extends Application {
         stage.setTitle("Consultas del taller");
         this.stage.show();
     }
+    public void abrirVentanaPrincipal() throws IOException {
+
 
     public void abrirVentanaOrdenServicio() throws IOException {
 
