@@ -201,7 +201,8 @@ public class Taller {
         public boolean eliminarCliente(String numIdentificacionCliente) {
         boolean eliminado = false;
         if (verificarCliente(numIdentificacionCliente)) {
-            listClientes.remove(numIdentificacionCliente);
+            Cliente cliente = buscarCliente(numIdentificacionCliente);
+            listClientes.remove(cliente);
             eliminado = true;
         }
 
@@ -236,6 +237,16 @@ public class Taller {
             }
         }
         return verificado;
+    }
+
+    public Cliente buscarCliente(String numIdentificacionCliente) {
+        Cliente cliente = null;
+        for (Cliente clienteList : listClientes) {
+            if (clienteList.getNumIdentificacion().equals(numIdentificacionCliente)) {
+                cliente = clienteList;
+            }
+        }
+        return cliente;
     }
 
     //Verificar bicicleta registrada por serial
