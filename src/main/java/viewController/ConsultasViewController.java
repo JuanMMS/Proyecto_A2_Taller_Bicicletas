@@ -12,7 +12,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.LinkedList;
 
-public class TallerViewController {
+public class ConsultasViewController {
 
     private App app;
 

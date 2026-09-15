@@ -1,5 +1,7 @@
 package app;
 
+import controller.ClienteController;
+import controller.MecanicoController;
 import controller.OrdenServicioController;
 import controller.TallerController;
 import javafx.application.Application;
@@ -7,9 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Taller;
-import viewController.OrdenServicioViewController;
-import viewController.TallerViewController;
-import viewController.VentanaPrincipalViewController;
+import viewController.*;
 
 import java.io.IOException;
 
@@ -23,22 +23,37 @@ public class App extends Application {
 
     private final OrdenServicioController ordenServicioController = new OrdenServicioController(tallerController);
 
+    private final ClienteController clienteController = new ClienteController(taller);
+
+    private final MecanicoController mecanicoController = new MecanicoController(taller);
+
+    private final VentanaPrincipalViewController ventanaPrincipalViewController = new VentanaPrincipalViewController();
+
     Stage stage = new Stage();
+    
     //Iniciar la aplicacion
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/assets/consultas.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/assets/ventanaPrincipal.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        TallerViewController tallerViewController = fxmlLoader.getController();
-        tallerViewController.setTallerController(tallerController);
-        tallerViewController.setApp(this);
+        VentanaPrincipalViewController ventanaPrincipalViewController = fxmlLoader.getController();
+        ventanaPrincipalViewController.setApp(this);
         this.stage = stage;
-        stage.setScene(scene);
-        stage.setTitle("Consultas del taller");
+        this.stage.setScene(scene);
+        this.stage.setTitle("Bienvenido");
         this.stage.show();
     }
-    public void abrirVentanaPrincipal() throws IOException {
 
+    public void abrirVentanaConsultas() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/assets/consultas.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        ConsultasViewController consultasViewController = fxmlLoader.getController();
+        consultasViewController.setTallerController(tallerController);
+        consultasViewController.setApp(this);
+        stage.setScene(scene);
+        stage.setTitle("Consultas del taller");
+        stage.show();
+    }
 
     public void abrirVentanaOrdenServicio() throws IOException {
 
@@ -53,6 +68,41 @@ public class App extends Application {
         ventana.show();
     }
 
-    public static void main(String[] args) {launch(args);}
+    public void abrirVentanaCliente() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/assets/CrudCliente.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        ClienteViewController clienteViewController = fxmlLoader.getController();
+        clienteViewController.setClienteController(clienteController);
+        clienteViewController.setApp(this);
+        Stage ventana = new Stage();
+        ventana.setScene(scene);
+        ventana.setTitle("Gestión de clientes");
+        ventana.show();
+    }
 
+    public void abrirVentanaMecanico() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/assets/crudMecanico.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        MecanicoViewController mecanicoViewController = fxmlLoader.getController();
+        mecanicoViewController.setMecanicoController(mecanicoController);
+        mecanicoViewController.setApp(this);
+        Stage ventana = new Stage();
+        ventana.setScene(scene);
+        ventana.setTitle("Gestión de mecanicos");
+        ventana.show();
+    }
+
+    public void abrirVentanaBicicleta() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/assets/crudMecanico.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        MecanicoViewController mecanicoViewController = fxmlLoader.getController();
+        mecanicoViewController.setMecanicoController(mecanicoController);
+        mecanicoViewController.setApp(this);
+        Stage ventana = new Stage();
+        ventana.setScene(scene);
+        ventana.setTitle("Gestión de mecanicos");
+        ventana.show();
+    }
+
+    public static void main(String[] args) {launch(args);}
 }

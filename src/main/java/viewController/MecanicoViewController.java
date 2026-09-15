@@ -1,5 +1,6 @@
 package viewController;
 
+import app.App;
 import controller.MecanicoController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +12,8 @@ import javafx.scene.control.TextField;
 import model.Mecanico;
 
 public class MecanicoViewController {
+    private App app;
+
 
     @FXML
     private TextField txtId;
@@ -284,5 +287,9 @@ public class MecanicoViewController {
         alert.setContentText(mensaje);
 
         alert.showAndWait();
+    }
+
+    public void setApp(App app) {
+        this.app = app;
     }
 }

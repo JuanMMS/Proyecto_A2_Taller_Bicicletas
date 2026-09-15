@@ -1,5 +1,6 @@
 package viewController;
 
+import app.App;
 import controller.ClienteController;
 import model.Cliente;
 
@@ -15,6 +16,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class ClienteViewController {
+
+    private App app;
 
     // Controller de la lógica del sistema
     private ClienteController clienteController;
@@ -451,4 +454,7 @@ public class ClienteViewController {
 
     }
 
+    public void setApp(App app) {
+        this.app = app;
+    }
 }
