@@ -27,7 +27,6 @@ public class App extends Application {
 
     private final MecanicoController mecanicoController = new MecanicoController(taller);
 
-    private final VentanaPrincipalViewController ventanaPrincipalViewController = new VentanaPrincipalViewController();
 
     Stage stage = new Stage();
     
