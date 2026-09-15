@@ -52,8 +52,8 @@ public class Mecanico {
 
     @Override
     public String toString() {
-        return "Nombre: " + nombre + "\n"
-                + ", Apellido: " + apellido + "\n"
-                + ", Id: " + id;
+        return "Nombre: " + nombre + "|"
+                + "Apellido: " + apellido + "|"
+                + "Id: " + id;
     }
 }

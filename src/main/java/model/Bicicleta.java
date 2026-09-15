@@ -75,7 +75,7 @@ public class Bicicleta {
 
     @Override
     public String toString() {
-        return "Marca='" + marca + "\n" + ", numSerial='" + numSerial + "\n";
+        return "Marca: " + marca + " " +"| Color:" + color + " " + "numSerial: " + numSerial;
     }
 
     public LinkedList<HistorialServicios> getHistorialServicios() {

@@ -5,16 +5,20 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Mecanico;
 import model.Taller;
 import viewController.*;
 import model.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class App extends Application {
 
     //Crear el taller de la aplicacion
     public static Taller taller = new Taller("Taller Bicicletas UQ", "12345", "El bunker", 300);
-
+    Mecanico mecanico1 = new Mecanico("Juan", "Mosq", "123");
+    List<Mecanico> mecanicos = taller.getListMecanicos();
     //Crear los controller
     private final TallerController tallerController = new TallerController(taller);
 
