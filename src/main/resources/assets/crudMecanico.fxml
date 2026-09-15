@@ -1,66 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="viewController.MecanicoViewController"
-      spacing="15">
+<VBox spacing="15" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewController.MecanicoViewController">
 
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets bottom="20" left="20" right="20" top="20" />
     </padding>
 
-    <Label text="GESTIÓN DE MECÁNICOS"/>
+    <Label text="GESTIÓN DE MECÁNICOS" />
 
     <HBox spacing="10">
-        <Label text="ID:"/>
-        <TextField fx:id="txtId" promptText="Ingrese el ID"/>
+        <Label text="ID:" />
+        <TextField fx:id="txtId" promptText="Ingrese el ID" />
 
-        <Label text="Nombre:"/>
-        <TextField fx:id="txtNombre" promptText="Ingrese el nombre"/>
+        <Label text="Nombre:" />
+        <TextField fx:id="txtNombre" promptText="Ingrese el nombre" />
 
-        <Label text="Apellido:"/>
-        <TextField fx:id="txtApellido" promptText="Ingrese el apellido"/>
+        <Label text="Apellido:" />
+        <TextField fx:id="txtApellido" promptText="Ingrese el apellido" />
     </HBox>
 
     <HBox spacing="10">
-        <Button fx:id="btnCrear"
-                text="Crear"
-                onAction="#onAgregarMecanico"/>
+        <Button fx:id="btnCrear" onAction="#onAgregarMecanico" text="Crear" />
 
-        <Button fx:id="btnModificar"
-                text="Modificar"
-                onAction="#onActualizarMecanico"/>
+        <Button fx:id="btnModificar" onAction="#onActualizarMecanico" text="Modificar" />
 
-        <Button fx:id="btnEliminar"
-                text="Eliminar"
-                onAction="#onEliminarMecanico"/>
+        <Button fx:id="btnEliminar" onAction="#onEliminarMecanico" text="Eliminar" />
 
-        <Button fx:id="btnLimpiar"
-                text="Limpiar"
-                onAction="#onLimpiarCampos"/>
+        <Button fx:id="btnLimpiar" onAction="#onLimpiarCampos" text="Limpiar" />
+      <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#handleVolverVentanaPrincipal" text="Volver">
+         <HBox.margin>
+            <Insets left="290.0" />
+         </HBox.margin>
+      </Button>
     </HBox>
 
     <TableView fx:id="tblListMecanico">
 
         <columns>
 
-            <TableColumn fx:id="colId"
-                         text="ID"/>
+            <TableColumn fx:id="colId" text="ID" />
 
-            <TableColumn fx:id="colNombre"
-                         text="Nombre"/>
+            <TableColumn fx:id="colNombre" text="Nombre" />
 
-            <TableColumn fx:id="colApellido"
-                         text="Apellido"/>
+            <TableColumn fx:id="colApellido" text="Apellido" />
 
         </columns>
 

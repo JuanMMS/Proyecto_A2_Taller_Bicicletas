@@ -8,11 +8,12 @@ import javafx.scene.control.*;
 import model.OrdenServicio;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.LinkedList;
 
-public class TallerViewController {
+public class ConsultasViewController {
 
     private App app;
 
@@ -246,6 +247,14 @@ public class TallerViewController {
         String mensaje = tallerController.obtenerAlertaStock();
 
         lblStock.setText(mensaje);
+    }
+
+    // =========================
+    // VOLVER A LA VENTANA PRINCIPAL
+    // =========================
+    @FXML
+    private void handleVolverVentanaPrincipal() throws IOException {
+        app.abrirVentanaPrincipal();
     }
 
 

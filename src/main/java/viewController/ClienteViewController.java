@@ -1,5 +1,6 @@
 package viewController;
 
+import app.App;
 import controller.ClienteController;
 import model.Cliente;
 
@@ -14,7 +15,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
+
 public class ClienteViewController {
+
+    private App app;
 
     // Controller de la lógica del sistema
     private ClienteController clienteController;
@@ -230,8 +235,8 @@ public class ClienteViewController {
         String correo = txtCorreo.getText();
 
         return new Cliente(
-                cedula,
                 nombre,
+                cedula,
                 telefono,
                 correo
         );
@@ -451,4 +456,19 @@ public class ClienteViewController {
 
     }
 
+    public void setApp(App app) {
+        this.app = app;
+    }
+
+    public void mostrarClienteRegistrado(Cliente cliente) {
+        listClientes.add(cliente);
+    }
+
+    // =========================
+    // VOLVER A LA VENTANA PRINCIPAL
+    // =========================
+    @FXML
+    private void handleVolverVentanaPrincipal() throws IOException {
+        app.abrirVentanaPrincipal();
+    }
 }

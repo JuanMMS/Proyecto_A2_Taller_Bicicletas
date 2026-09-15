@@ -126,6 +126,7 @@ public class Taller {
                 bicicletaList.setMarca(bicicleta.getMarca());
                 bicicletaList.setColor(bicicleta.getColor());
                 bicicletaList.setAnio(bicicleta.getAnio());
+                actualizado = true;
                 break;
             }
         }
@@ -190,7 +191,7 @@ public class Taller {
     //Metodo para agregar cliente a la lista de clientes
     public boolean agregarCliente(Cliente cliente) {
         boolean centinela = false;
-        if (!verificarCliente(cliente.getNombre())) {
+        if (!verificarCliente(cliente.getNumIdentificacion())) {
             listClientes.add(cliente);
             centinela = true;
         }
@@ -199,15 +200,15 @@ public class Taller {
     //Metodo para eliminar Cliente de la lista de clientes
         public boolean eliminarCliente(String numIdentificacionCliente) {
         boolean eliminado = false;
-        for (Cliente cliente : listClientes) {
-            if (cliente.getNumIdentificacion().equals(numIdentificacionCliente)) {
-                listOrdenesServicio.remove(cliente);
-                eliminado = true;
-                break;
-            }
+        if (verificarCliente(numIdentificacionCliente)) {
+            Cliente cliente = buscarCliente(numIdentificacionCliente);
+            listClientes.remove(cliente);
+            eliminado = true;
         }
+
         return eliminado;
     }
+
     //Metodo para modificar un cliente en la lista de clientes
     public boolean actualizarCliente(String numIdentificacion, Cliente cliente) {
         boolean actualizado = false;
@@ -238,12 +239,23 @@ public class Taller {
         return verificado;
     }
 
+    public Cliente buscarCliente(String numIdentificacionCliente) {
+        Cliente cliente = null;
+        for (Cliente clienteList : listClientes) {
+            if (clienteList.getNumIdentificacion().equals(numIdentificacionCliente)) {
+                cliente = clienteList;
+            }
+        }
+        return cliente;
+    }
+
     //Verificar bicicleta registrada por serial
     public boolean verificarSerial(String serial) {
         boolean verificado = false;
         for (Bicicleta bicicleta : listBicicletas) {
             if (bicicleta.getNumSerial().equals(serial)) {
                 verificado = true;
+                break;
             }
         }
         return verificado;
@@ -316,7 +328,7 @@ public class Taller {
     public boolean actualizarMecanico(String numIdentificacion, Mecanico mecanico) {
         boolean actualizado = false;
         for (Mecanico mecanicoList : listMecanicos) {
-            if (mecanico.getId().equals(numIdentificacion)) {
+            if (mecanicoList.getId().equals(numIdentificacion)) {
                 mecanicoList.setNombre(mecanico.getNombre());
                 mecanicoList.setApellido(mecanico.getApellido());
                 mecanicoList.setId(numIdentificacion);

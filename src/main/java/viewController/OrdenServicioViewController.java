@@ -18,6 +18,7 @@ import model.Bicicleta;
 import model.Mecanico;
 import model.OrdenServicio;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.Time;
@@ -217,9 +218,8 @@ public class OrdenServicioViewController implements Initializable {
      * Maneja el evento de cancelar y cerrar la ventana actual.
      */
     @FXML
-    private void handleCancelar(ActionEvent event) {
-        Stage stage = (Stage) btnCancelar.getScene().getWindow();
-        stage.close();
+    private void handleVolverVentanaPrincipal() throws IOException {
+        app.abrirVentanaPrincipal();
     }
 
     /**
