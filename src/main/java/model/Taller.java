@@ -165,6 +165,36 @@ public class Taller {
         }
         return centinela;
     }
+    //Metodo para eliminar Cliente de la lista de clientes
+        public boolean eliminarCliente(String numIdentificacionCliente) {
+        boolean eliminado = false;
+        for (Cliente cliente : listClientes) {
+            if (cliente.getNumIdentificacion().equals(numIdentificacionCliente)) {
+                listOrdenesServicio.remove(cliente);
+                eliminado = true;
+                break;
+            }
+        }
+        return eliminado;
+    }
+    //Metodo para modificar un cliente en la lista de clientes
+    public boolean actualizarCliente(String numIdentificacion, Cliente cliente) {
+        boolean actualizado = false;
+        for (Cliente clienteList : listClientes) {
+            if (clienteList.getNumIdentificacion().equals(numIdentificacion)) {
+                cliente.setNombre(cliente.getNombre());
+                cliente.setApellido(cliente.getApellido());
+                cliente.setNumIdentificacion(numIdentificacion);
+                cliente.setTelefono(cliente.getTelefono());
+                cliente.setDireccion(cliente.getDireccion());
+                actualizado = true;
+                break;
+            }
+        }
+        return actualizado;
+    }
+
+
 
     //Metodo para verificar que el cliente no esté existente
     public boolean verificarCliente(String numIdentificacion) {
