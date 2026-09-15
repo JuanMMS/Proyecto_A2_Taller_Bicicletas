@@ -105,6 +105,35 @@ public class Taller {
         }
         return retorno;
     }
+    //Metodo para eliminar bicicletas
+    public boolean eliminarBicicleta(String numSerial) {
+            boolean eliminado = false;
+            for (Bicicleta bicicleta : listBicicletas) {
+                if (bicicleta.getNumSerial().equals(numSerial)) {
+                    listBicicletas.remove(bicicleta);
+                    eliminado = true;
+                    break;
+                }
+            }
+            return eliminado;
+        }
+
+    //Metodo para modificar un bicicleta en la lista de bicicletas
+    public boolean actualizarBicicleta(String numSerial, Bicicleta bicicleta) {
+        boolean actualizado = false;
+        for (Bicicleta bicicletaList : listBicicletas) {
+            if (bicicletaList.getNumSerial().equals(numSerial)) {
+                bicicletaList.setMarca(bicicleta.getMarca());
+                bicicletaList.setColor(bicicleta.getColor());
+                bicicletaList.setAnio(bicicleta.getAnio());
+                break;
+            }
+        }
+        return actualizado;
+    }
+
+
+
 
     //Metodo para agregar una orden de servicio a la lista de ordenes de servicio del taller
     public boolean agregarOrdenServicio(OrdenServicio ordenServicio) {
@@ -299,16 +328,15 @@ public class Taller {
     }
 
     //Metodo para verificar mecanico
-    public boolean verificarMecanico(String serial) {
+    public boolean verificarMecanico(String iD) {
         boolean verificado = false;
-        for (Bicicleta bicicleta : listBicicletas) {
-            if (bicicleta.getNumSerial().equals(serial)) {
+        for (Mecanico mecanico : listMecanicos) {
+            if (mecanico.getId().equals(iD)) {
                 verificado = true;
             }
         }
         return verificado;
     }
-
 
 
     @Override
