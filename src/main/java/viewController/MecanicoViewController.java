@@ -11,6 +11,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.Mecanico;
 
+import java.io.IOException;
+
 public class MecanicoViewController {
     private App app;
 
@@ -291,5 +293,10 @@ public class MecanicoViewController {
 
     public void setApp(App app) {
         this.app = app;
+    }
+
+    @FXML
+    private void handleVolverVentanaPrincipal() throws IOException {
+        app.abrirVentanaPrincipal();
     }
 }

@@ -15,6 +15,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
+
 public class ClienteViewController {
 
     private App app;
@@ -456,5 +458,13 @@ public class ClienteViewController {
 
     public void setApp(App app) {
         this.app = app;
+    }
+
+    // =========================
+    // VOLVER A LA VENTANA PRINCIPAL
+    // =========================
+    @FXML
+    private void handleVolverVentanaPrincipal() throws IOException {
+        app.abrirVentanaPrincipal();
     }
 }

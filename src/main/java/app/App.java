@@ -62,10 +62,9 @@ public class App extends Application {
         OrdenServicioViewController viewController = fxmlLoader.getController();
         viewController.setOrdenServicioController(ordenServicioController);
         viewController.setApp(this);
-        Stage ventana = new Stage();
-        ventana.setScene(scene);
-        ventana.setTitle("Gestión de Orden de Servicio");
-        ventana.show();
+        stage.setScene(scene);
+        stage.setTitle("Gestión de Orden de Servicio");
+        stage.show();
     }
 
     public void abrirVentanaCliente() throws IOException {
@@ -74,10 +73,9 @@ public class App extends Application {
         ClienteViewController clienteViewController = fxmlLoader.getController();
         clienteViewController.setClienteController(clienteController);
         clienteViewController.setApp(this);
-        Stage ventana = new Stage();
-        ventana.setScene(scene);
-        ventana.setTitle("Gestión de clientes");
-        ventana.show();
+        stage.setScene(scene);
+        stage.setTitle("Gestión de clientes");
+        stage.show();
     }
 
     public void abrirVentanaMecanico() throws IOException {
@@ -86,10 +84,9 @@ public class App extends Application {
         MecanicoViewController mecanicoViewController = fxmlLoader.getController();
         mecanicoViewController.setMecanicoController(mecanicoController);
         mecanicoViewController.setApp(this);
-        Stage ventana = new Stage();
-        ventana.setScene(scene);
-        ventana.setTitle("Gestión de mecanicos");
-        ventana.show();
+        stage.setScene(scene);
+        stage.setTitle("Gestión de mecanicos");
+        stage.show();
     }
 
     public void abrirVentanaBicicleta() throws IOException {
@@ -98,10 +95,20 @@ public class App extends Application {
         MecanicoViewController mecanicoViewController = fxmlLoader.getController();
         mecanicoViewController.setMecanicoController(mecanicoController);
         mecanicoViewController.setApp(this);
-        Stage ventana = new Stage();
-        ventana.setScene(scene);
-        ventana.setTitle("Gestión de mecanicos");
-        ventana.show();
+        stage.setScene(scene);
+        stage.setTitle("Gestión de mecanicos");
+        stage.show();
+    }
+
+    //Cambiar a la ventana principal
+    public void abrirVentanaPrincipal() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/assets/ventanaPrincipal.fxml"));
+        Scene scene = new Scene(loader.load());
+        VentanaPrincipalViewController ventanaPrincipalViewController = loader.getController();
+        ventanaPrincipalViewController.setApp(this);
+        stage.setScene(scene);
+        stage.setTitle("Bienvenido");
+        stage.show();
     }
 
     public static void main(String[] args) {launch(args);}

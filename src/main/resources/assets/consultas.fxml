@@ -30,7 +30,7 @@
       
                   </children>
               </VBox>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="94.0" text="Button" fx:id="btnVolver" />
+            <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#handleVolverVentanaPrincipal" prefHeight="100.0" prefWidth="94.0" text="Volver" />
          </children>
       </HBox>
 
