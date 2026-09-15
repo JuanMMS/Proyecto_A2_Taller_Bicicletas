@@ -1,9 +1,6 @@
 package app;
 
-import controller.ClienteController;
-import controller.MecanicoController;
-import controller.OrdenServicioController;
-import controller.TallerController;
+import controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,6 +23,8 @@ public class App extends Application {
     private final ClienteController clienteController = new ClienteController(taller);
 
     private final MecanicoController mecanicoController = new MecanicoController(taller);
+
+    private final BicicletaController bicicletaController = new BicicletaController(taller);
 
 
     Stage stage = new Stage();
@@ -89,13 +88,13 @@ public class App extends Application {
     }
 
     public void abrirVentanaBicicleta() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/assets/crudMecanico.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/assets/crudBicicletas.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        MecanicoViewController mecanicoViewController = fxmlLoader.getController();
-        mecanicoViewController.setMecanicoController(mecanicoController);
-        mecanicoViewController.setApp(this);
+        BicicletaViewController bicicletaViewController = fxmlLoader.getController();
+        bicicletaViewController.setBicicletaController(bicicletaController);
+        bicicletaViewController.setApp(this);
         stage.setScene(scene);
-        stage.setTitle("Gestión de mecanicos");
+        stage.setTitle("Gestión de bicicletas");
         stage.show();
     }
 

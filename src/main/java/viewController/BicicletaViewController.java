@@ -1,5 +1,6 @@
 package viewController;
 
+import app.App;
 import controller.BicicletaController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +13,7 @@ import javafx.beans.property.SimpleStringProperty;
 import model.Bicicleta;
 
 public class BicicletaViewController {
+    private App app;
 
     @FXML
     private TextField txtNumSerial;
@@ -305,5 +307,9 @@ public class BicicletaViewController {
         alert.setContentText(mensaje);
 
         alert.showAndWait();
+    }
+
+    public void setApp(App app) {
+        this.app = app;
     }
 }
