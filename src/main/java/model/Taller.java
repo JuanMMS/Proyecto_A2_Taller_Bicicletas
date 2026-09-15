@@ -190,7 +190,7 @@ public class Taller {
     //Metodo para agregar cliente a la lista de clientes
     public boolean agregarCliente(Cliente cliente) {
         boolean centinela = false;
-        if (!verificarCliente(cliente.getNombre())) {
+        if (!verificarCliente(cliente.getNumIdentificacion())) {
             listClientes.add(cliente);
             centinela = true;
         }
